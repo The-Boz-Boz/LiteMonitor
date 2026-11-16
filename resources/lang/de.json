@@ -148,6 +148,7 @@
     "TaskbarSingleLine": "Einzeilig",
     "TaskbarHoverShowAll": "Hover-Details",
     "TaskbarIntegerValues": "Ganzzahlige Werte",
+    "TaskbarLabelNextToValue": "Beschriftung neben Wert",
     "TaskbarStyle": "Stil",
     "TaskbarMonitor": "Bildschirm",
     "TaskbarStyleBold": "Groß",

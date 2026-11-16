@@ -148,6 +148,7 @@
     "TaskbarSingleLine": "Одна строка",
     "TaskbarHoverShowAll": "Детали при наведении",
     "TaskbarIntegerValues": "Целые значения",
+    "TaskbarLabelNextToValue": "Подпись рядом с числом",
     "TaskbarStyle": "Стиль",
     "TaskbarMonitor": "Экран",
     "TaskbarStyleBold": "Крупно",

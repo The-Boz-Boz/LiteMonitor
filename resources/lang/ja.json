@@ -149,6 +149,7 @@
     "TaskbarSingleLine": "一行表示",
     "TaskbarHoverShowAll": "ホバーで詳細表示",
     "TaskbarIntegerValues": "整数で表示",
+    "TaskbarLabelNextToValue": "ラベルを値の横に",
     "TaskbarStyle": "スタイル",
     "TaskbarMonitor": "モニター",
     "TaskbarStyleBold": "大文字",

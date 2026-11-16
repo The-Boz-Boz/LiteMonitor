@@ -148,6 +148,7 @@
     "TaskbarSingleLine": "Una línea",
     "TaskbarHoverShowAll": "Detalles al pasar",
     "TaskbarIntegerValues": "Valores enteros",
+    "TaskbarLabelNextToValue": "Etiqueta junto al valor",
     "TaskbarStyle": "Estilo",
     "TaskbarMonitor": "Pantalla",
     "TaskbarStyleBold": "Grande",

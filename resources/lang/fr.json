@@ -149,6 +149,7 @@
     "TaskbarSingleLine": "Une ligne",
     "TaskbarHoverShowAll": "Détails au survol",
     "TaskbarIntegerValues": "Valeurs entières",
+    "TaskbarLabelNextToValue": "Libellé près de la valeur",
     "TaskbarStyle": "Style",
     "TaskbarMonitor": "Écran",
     "TaskbarStyleBold": "Grand",
