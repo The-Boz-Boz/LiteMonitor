@@ -148,6 +148,7 @@
     "TaskbarSingleLine": "单行显示",
     "TaskbarHoverShowAll": "鼠标悬停显示详情",
     "TaskbarIntegerValues": "任务栏数值取整",
+    "TaskbarLabelNextToValue": "标签紧贴数值",
     "TaskbarStyle": "任务栏样式",
     "TaskbarMonitor": "显示器屏幕",
     "TaskbarStyleBold": "大字模式",

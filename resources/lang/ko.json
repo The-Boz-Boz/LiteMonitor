@@ -148,6 +148,7 @@
     "TaskbarSingleLine": "한 줄 표시",
     "TaskbarHoverShowAll": "마우스 오버 상세",
     "TaskbarIntegerValues": "정수로 표시",
+    "TaskbarLabelNextToValue": "라벨을 값 옆에",
     "TaskbarStyle": "스타일",
     "TaskbarMonitor": "모니터",
     "TaskbarStyleBold": "큰 글자",

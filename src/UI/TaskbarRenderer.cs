@@ -27,6 +27,7 @@ namespace LiteMonitor
 
         // ★★★ [新增] 自定义颜色缓存 ★★★
         private static bool _useCustom = false;
+        private static bool _labelNextToValue = false;
         private static Color _cLabel, _cSafe, _cWarn, _cCrit;
 
         // ★★★ [新增] 极简的核心：手动刷新缓存 ★★★
@@ -46,6 +47,7 @@ namespace LiteMonitor
             _cachedFont = UIUtils.GetFont(s.Font, s.Size, s.Bold);
 
             // 颜色依然允许自定义
+            _labelNextToValue = cfg.TaskbarLabelNextToValue;
             _useCustom = cfg.TaskbarCustomStyle;
             if (_useCustom)
             {
@@ -144,6 +146,20 @@ namespace LiteMonitor
                 return;
             }
 
+            if (_labelNextToValue)
+            {
+                int valueW = TextRenderer.MeasureText(g, value, font, Size.Empty, TextFormatFlags.NoPadding).Width;
+                int gap = Math.Max(2, (int)(font.Height * 0.3f));
+                var labelRc = new Rectangle(rc.X, rc.Y, Math.Max(0, rc.Width - valueW - gap), rc.Height);
+                TextRenderer.DrawText(
+                    g, label, font, labelRc, labelColor,
+                    TextFormatFlags.Right |
+                    TextFormatFlags.VerticalCenter |
+                    TextFormatFlags.NoPadding |
+                    TextFormatFlags.NoClipping
+                );
+            }
+            else
             // Label 左对齐
             TextRenderer.DrawText(
                 g, label, font, rc, labelColor,

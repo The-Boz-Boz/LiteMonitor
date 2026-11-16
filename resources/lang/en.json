@@ -148,6 +148,7 @@
     "TaskbarSingleLine": "Single Line",
     "TaskbarHoverShowAll": "Hover Details",
     "TaskbarIntegerValues": "Integer Values",
+    "TaskbarLabelNextToValue": "Label Next to Value",
     "TaskbarStyle": "Style",
     "TaskbarMonitor": "Monitor",
     "TaskbarStyleBold": "Big",
