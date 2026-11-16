@@ -11,6 +11,7 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
+      - run: New-Item -ItemType File -Force '使用说明(必读).txt' | Out-Null
       - run: dotnet publish LiteMonitor.csproj -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true -o out
       - uses: actions/upload-artifact@v4
         with:
