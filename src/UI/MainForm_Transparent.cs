@@ -25,6 +25,30 @@ namespace LiteMonitor
         private const int PBT_APMRESUMESUSPEND = 0x0007;
         private const int PBT_APMRESUMEAUTOMATIC = 0x0012;
         private CancellationTokenSource? _displayChangeCts;
+        private readonly string _startPrimary = GetPrimarySignature();
+
+        [global::System.Runtime.InteropServices.DllImport("user32.dll")] private static extern IntPtr GetDC(IntPtr hWnd);
+        [global::System.Runtime.InteropServices.DllImport("user32.dll")] private static extern int ReleaseDC(IntPtr hWnd, IntPtr hDC);
+        [global::System.Runtime.InteropServices.DllImport("gdi32.dll")] private static extern int GetDeviceCaps(IntPtr hdc, int nIndex);
+
+        // 主显示器的设备名与物理分辨率 (DESKTOPHORZRES/DESKTOPVERTRES 不受 DPI 虚拟化影响)
+        private static string GetPrimarySignature()
+        {
+            IntPtr dc = GetDC(IntPtr.Zero);
+            try { return $"{Screen.PrimaryScreen?.DeviceName}|{GetDeviceCaps(dc, 118)}x{GetDeviceCaps(dc, 117)}"; }
+            finally { ReleaseDC(IntPtr.Zero, dc); }
+        }
+
+        // 进程为 System DPI Aware，主显示器更换后 DPI 不会更新，只能重启自身
+        private void RestartSelf()
+        {
+            string? exe = Environment.ProcessPath;
+            if (string.IsNullOrEmpty(exe)) return;
+            var psi = new global::System.Diagnostics.ProcessStartInfo("powershell.exe",
+                $"-NoProfile -WindowStyle Hidden -Command \"Start-Sleep 2; Start-Process -FilePath '{exe.Replace("'", "''")}'\"")
+            { UseShellExecute = false, CreateNoWindow = true };
+            try { global::System.Diagnostics.Process.Start(psi); Application.Exit(); } catch { }
+        }
 
         private Point _dragOffset;
         private bool _uiDragging = false;
@@ -278,12 +302,13 @@ namespace LiteMonitor
                 _displayChangeCts = new System.Threading.CancellationTokenSource();
                 var token = _displayChangeCts.Token;
 
-                Task.Delay(500, token).ContinueWith(t => 
+                Task.Delay(2000, token).ContinueWith(t => 
                 {
                     if (!t.IsCanceled)
                     {
                         this.BeginInvoke(new Action(() =>
                         {
+                            if (GetPrimarySignature() != _startPrimary) { RestartSelf(); return; }
                             _bizHelper?.RestorePos();
                             _taskbar?.RequestTaskbarRecovery();
                         }));
