@@ -148,9 +148,8 @@ namespace LiteMonitor
 
             if (_labelNextToValue)
             {
-                try {
                 int valueW = TextRenderer.MeasureText(value, font, Size.Empty, TextFormatFlags.NoPadding).Width;
-                int gap = Math.Max(2, (int)(font.Height * 0.3f));
+                int gap = Math.Max(2, TextRenderer.MeasureText("0", font, Size.Empty, TextFormatFlags.NoPadding).Width / 2);
                 var labelRc = new Rectangle(rc.X, rc.Y, Math.Max(0, rc.Width - valueW - gap), rc.Height);
                 TextRenderer.DrawText(
                     g, label, font, labelRc, labelColor,
@@ -159,7 +158,6 @@ namespace LiteMonitor
                     TextFormatFlags.NoPadding |
                     TextFormatFlags.NoClipping
                 );
-                } catch (Exception ex) { try { global::System.IO.File.AppendAllText(global::System.IO.Path.Combine(AppContext.BaseDirectory, "label-debug.log"), ex + "\n"); } catch { } }
             }
             else
             // Label 左对齐
