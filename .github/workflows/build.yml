@@ -1,7 +1,7 @@
 name: build
 on:
   push:
-    branches: [ci-build]
+    branches: [ci-build, ci-follow-tray]
   workflow_dispatch:
 jobs:
   build:

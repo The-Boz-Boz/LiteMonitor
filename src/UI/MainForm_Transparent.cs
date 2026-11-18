@@ -45,7 +45,7 @@ namespace LiteMonitor
             string? exe = Environment.ProcessPath;
             if (string.IsNullOrEmpty(exe)) return;
             var psi = new global::System.Diagnostics.ProcessStartInfo("powershell.exe",
-                $"-NoProfile -WindowStyle Hidden -Command \"Start-Sleep 2; Start-Process -FilePath '{exe.Replace("'", "''")}'\"")
+                $"-NoProfile -WindowStyle Hidden -Command \"Wait-Process -Id {Environment.ProcessId} -Timeout 60 -ErrorAction SilentlyContinue; Start-Sleep 1; Start-Process -FilePath '{exe.Replace("'", "''")}'\"")
             { UseShellExecute = false, CreateNoWindow = true };
             try { global::System.Diagnostics.Process.Start(psi); Application.Exit(); } catch { }
         }
